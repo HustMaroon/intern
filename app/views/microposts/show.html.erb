@@ -1,0 +1,22 @@
+<% provide(:title, @micropost.user.name) %>
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @micropost.user %>
+        <%= link_to @micropost.user.name,@micropost.user  %>
+      </h1>
+    </section>
+  <div class="micopost_content">
+  <%= @micropost.content %>
+  </div>
+  <div class="col-md-8">
+    <% if @micropost.comments.any? %>
+      <h3>Comments (<%= @micropost.comments.count %>)</h3>
+      <ol class="comments">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
+  </div>
+  <div class="comment_form">
+  <%= render 'shared/comment_form'%>
+  </div>

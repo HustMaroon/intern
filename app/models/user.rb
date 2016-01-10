@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
     has_many :followers, through: :passive_relationships, source: :follower
+    has_many :comments, dependent: :destroy
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

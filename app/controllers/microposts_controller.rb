@@ -19,11 +19,13 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
-  private
+  def show
+  	@micropost = Micropost.find_by(id: params[:id])
+  	@comment = @micropost.comments.build if logged_in?
+  	@comments = @micropost.comments.paginate(page: params[:page])
+  end
 
-    def micropost_params
-      params.require(:micropost).permit(:content)
-    end
+  private
 
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
