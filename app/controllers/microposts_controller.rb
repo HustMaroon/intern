@@ -21,6 +21,8 @@ class MicropostsController < ApplicationController
 
   def show
   	@micropost = Micropost.find_by(id: params[:id])
+  	@like = @micropost.likes.build if logged_in?
+  	@likes = @micropost.likes
   	@comment = @micropost.comments.build if logged_in?
   	@comments = @micropost.comments.paginate(page: params[:page])
   end

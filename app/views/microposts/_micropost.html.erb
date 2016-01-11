@@ -12,4 +12,7 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+  <span class="post_stats">
+  <%= micropost.likes.count%> likes.
+  <%= micropost.comments.count%> <%= link_to 'comments', micropost %>
 </li>

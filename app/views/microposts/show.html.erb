@@ -1,3 +1,4 @@
+<div id="micropost-<%= @micropost.id %>">
 <% provide(:title, @micropost.user.name) %>
     <section class="user_info">
       <h1>
@@ -8,6 +9,11 @@
   <div class="micopost_content">
   <%= @micropost.content %>
   </div>
+  <div class="stats">
+  <%= @micropost.likes.count %> likes.
+  <%= render 'like_form' %>
+  </div>
+
   <div class="col-md-8">
     <% if @micropost.comments.any? %>
       <h3>Comments (<%= @micropost.comments.count %>)</h3>
@@ -19,4 +25,5 @@
   </div>
   <div class="comment_form">
   <%= render 'shared/comment_form'%>
+  </div>
   </div>

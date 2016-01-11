@@ -6,7 +6,13 @@ class Micropost < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   validate  :picture_size
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
+  def liked_by?(user)
+    likes.each do |like|
+      return like.user==user
+    end
+  end
   private
     def picture_size
       if picture.size > 5.megabytes

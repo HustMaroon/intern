@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
     has_many :followers, through: :passive_relationships, source: :follower
     has_many :comments, dependent: :destroy
+    has_many :likes, dependent: :destroy
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -86,6 +87,10 @@ class User < ActiveRecord::Base
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def like?(micropost)
+  	likes.include?(micropost)
   end
 
   private
