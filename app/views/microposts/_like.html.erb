@@ -1,6 +1,9 @@
-<%= form_for([@micropost, @like], remote: true) do |f| %>
+<%= form_for([micropost, micropost.likes.build], remote: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.hidden_field :user_id %>
     <%= f.hidden_field :micropost_id %>
+    <div>
+    <%= micropost.likes.count %> likes
+    </div>
     <button class="btn btn-primary" type="submit">Like</button>
 <% end %>
