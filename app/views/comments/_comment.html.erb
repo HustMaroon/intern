@@ -1,4 +1,4 @@
-<li id="comment-<%= comment.id %>">
+<li id="comment-<%=comment.id%>">
   <%= link_to gravatar_for(comment.user), comment.user %>
   <span class="user"><%= link_to comment.user.name, comment.user %></span>
   <span class="content">
@@ -11,7 +11,7 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
     <% if current_user?(comment.user) %>
-      <%= link_to "delete", comment, method: :delete,
+      <%= link_to "delete", comment, method: :delete, remote: true,
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>

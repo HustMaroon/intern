@@ -12,17 +12,10 @@
   <div class="stats">
   <%= render 'like_form' %>
   </div>
-
-  <div class="col-md-8">
-    <% if @micropost.comments.any? %>
-      <h3>Comments (<%= @micropost.comments.count %>)</h3>
-      <ol class="comments">
-        <%= render @comments %>
-      </ol>
-      <%= will_paginate @comments %>
-    <% end %>
+  <div id="comments">
+  <%= render @comments%>
   </div>
   <div class="comment_form">
-  <%= render 'shared/comment_form'%>
+  <%= render 'shared/comment_form', micropost: @micropost%>
   </div>
   </div>

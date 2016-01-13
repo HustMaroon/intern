@@ -1,22 +1,30 @@
 class CommentsController < ApplicationController
 before_action :logged_in_user, only: [:create]
 	def create
-		micropost = Micropost.find(params[:micropost_id])
-		@comment = micropost.comments.build(comment_params)
+		@cmicropost = Micropost.find(params[:micropost_id])
+		@comment = @cmicropost.comments.build(comment_params)
 		@comment.user_id = current_user.id
 		if @comment.save
-			redirect_to micropost
-		else
-			redirect_to micropost
+			respond_to do |format|
+				format.html do
+					redirect_to @cmicropost
+				end
+				format.js
+			end
 		end
 	end
 
 	def destroy
 		@comment = Comment.find_by(params[:id])
-		micropost = @comment.micropost
+		@cmicropost = @comment.micropost
+		@delete_id = @comment.id
 		@comment.destroy
-		redirect_to micropost
-
+		respond_to do |format|
+			format.html do
+				redirect_to @cmicropost
+			end
+			format.js
+		end
 	end
 
 	private
