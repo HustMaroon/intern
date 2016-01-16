@@ -10,12 +10,12 @@
   <%= @micropost.content %>
   </div>
   <div class="stats">
-  <%= render 'like_form' %>
+  <%= render 'like_form' if current_user.following?(@micropost.user)%>
   </div>
   <div id="comments">
   <%= render @comments%>
   </div>
   <div class="comment_form">
-  <%= render 'shared/comment_form', micropost: @micropost%>
+  <%= render 'shared/comment_form', micropost: @micropost if current_user.following?(@micropost.user) %>
   </div>
   </div>

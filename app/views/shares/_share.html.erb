@@ -1,0 +1,17 @@
+<li id="share-<%= share.id %>">
+  <%= link_to gravatar_for(share.user), share.user %>
+  <span class="user"><%= link_to share.user.name, share.user %> shared a post:</span>
+  <span class="content">
+    <%= share.content %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(share.micropost.created_at) %> ago.
+    <% if current_user?(share.user) %>
+      <%= link_to "delete", share, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+  <span class="post">
+  <%= render share.micropost %>
+  </span>
+</li>

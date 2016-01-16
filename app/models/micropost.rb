@@ -7,6 +7,7 @@ class Micropost < ActiveRecord::Base
   validate  :picture_size
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :shares, dependent: :destroy
 
   def liked_by?(user)
     likes.each do |like|

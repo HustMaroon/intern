@@ -11,7 +11,9 @@ before_action :logged_in_user, only: [:create]
 				end
 				format.js
 			end
-		end
+	    else
+			flash[:warning]= "You can not comment on this post"
+	    end
 	end
 
 	def destroy
@@ -30,5 +32,10 @@ before_action :logged_in_user, only: [:create]
 	private
 	def comment_params
 		params.require(:comment).permit(:content, :micropost_id, :picture)
+	end
+
+	def following_user
+		@cmicropost = Micropost.find(params[:micropost_id])
+		current_user.following?(@cmicropost.user)
 	end
 end
