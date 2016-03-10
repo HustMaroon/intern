@@ -15,4 +15,8 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def test
+    @payload = {channel: "#ruby_team", username: "testBot", text: "This is a text message"}.to_json
+  end
 end

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
 
   get 'signup' => 'users#new'
+  get 'test' => 'static_pages#test'
 
   resources :microposts do
     resources :comments
