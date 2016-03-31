@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'devise'
 gem 'bootstrap-on-rails'
 gem 'haml'
 gem 'haml-rails'
